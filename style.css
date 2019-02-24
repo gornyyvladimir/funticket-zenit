@@ -828,3 +828,33 @@ body.view-control-buttons .viewControlButton {
 .viewControlButton-6 {
   margin-left: 105px;
 }
+
+/* my styles */
+.buy-ticket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 5px;
+  color: white;
+  background-color: #3498db;
+  font-size: 2rem;
+  transition: all 0.5s;
+}
+
+.buy-ticket:hover {
+  background-color: #0984e3;
+}
+
+.text-hotspot {
+  font-size: 8rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.embedded-hotspot {
+  /* background-color: red; */
+  width: 640px;
+  height: 410px;
+}

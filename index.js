@@ -41,7 +41,7 @@
         document.body.classList.add('desktop');
       }
     };
-    var mql = matchMedia("(max-width: 500px), (max-height: 500px)");
+    var mql = matchMedia('(max-width: 500px), (max-height: 500px)');
     setMode();
     mql.addListener(setMode);
   } else {
@@ -63,8 +63,8 @@
   // Viewer options.
   var viewerOpts = {
     controls: {
-      mouseViewMode: data.settings.mouseViewMode
-    }
+      mouseViewMode: data.settings.mouseViewMode,
+    },
   };
 
   // Initialize viewer.
@@ -72,20 +72,24 @@
 
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
-    var urlPrefix = "tiles";
-    var source = Marzipano.ImageUrlSource.fromString(
-      urlPrefix + "/" + data.id + "/{z}/{f}/{y}/{x}.jpg",
-      { cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg" });
+    var urlPrefix = 'tiles';
+    var source = Marzipano.ImageUrlSource.fromString(urlPrefix + '/' + data.id + '/{z}/{f}/{y}/{x}.jpg', {
+      cubeMapPreviewUrl: urlPrefix + '/' + data.id + '/preview.jpg',
+    });
     var geometry = new Marzipano.CubeGeometry(data.levels);
 
-    var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180);
+    var limiter = Marzipano.RectilinearView.limit.traditional(
+      2 * data.faceSize,
+      (100 * Math.PI) / 180,
+      (120 * Math.PI) / 180,
+    );
     var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
 
     var scene = viewer.createScene({
       source: source,
       geometry: geometry,
       view: view,
-      pinFirstLevel: true
+      pinFirstLevel: true,
     });
 
     // Create link hotspots.
@@ -100,10 +104,27 @@
       scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
     });
 
+    // Create text hotspots.
+    data.textHotspots.forEach(function(hotspot) {
+      var element = createTextHotspotElement(hotspot.text);
+      scene
+        .hotspotContainer()
+        .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
+    });
+
+    if (data.embeddedHotspots) {
+      data.embeddedHotspots.forEach(function(hotspot) {
+        var element = createEmbeddedElement();
+        scene
+          .hotspotContainer()
+          .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
+      });
+    }
+
     return {
       data: data,
       scene: scene,
-      view: view
+      view: view,
     };
   });
 
@@ -111,7 +132,7 @@
   var autorotate = Marzipano.autorotate({
     yawSpeed: 0.03,
     targetPitch: 0,
-    targetFov: Math.PI/2
+    targetFov: Math.PI / 2,
   });
   if (data.settings.autorotateEnabled) {
     autorotateToggleElement.classList.add('enabled');
@@ -157,6 +178,70 @@
     });
   });
 
+  // var lastHotspot;
+
+  // document.addEventListener('dblclick', function(event) {
+  //   var coords = viewer.view().screenToCoordinates({ x: event.clientX, y: event.clientY });
+  //   var element = createEmbeddedElement();
+  //   lastHotspot = viewer
+  //     .scene()
+  //     .hotspotContainer()
+  //     .createHotspot(
+  //       element,
+  //       { yaw: coords.yaw, pitch: coords.pitch },
+  //       {
+  //         perspective: {
+  //           radius: 2000,
+  //         },
+  //       },
+  //     );
+  //   // console.log(viewer.view);
+  //   console.log(coords);
+  // });
+
+  // var x = 0;
+  // var y = 0;
+  // var z = 0;
+  // var radius = 2000;
+  // document.addEventListener('keypress', function(event) {
+  //   // console.log(event.key);
+  //   // console.log(event);
+  //   switch (event.key) {
+  //     case 'x':
+  //       x = event.ctrlKey ? x - 1 : x + 1;
+  //       break;
+  //     case 'y':
+  //       y = event.ctrlKey ? y - 1 : y + 1;
+  //       break;
+  //     case 'z':
+  //       z = event.ctrlKey ? z - 1 : z + 1;
+  //       break;
+  //     case 'q':
+  //       x = 0;
+  //       y = 0;
+  //       z = 0;
+  //       radius = 500;
+  //       break;
+  //     case 'r':
+  //       radius = event.ctrlKey ? radius - 1 : radius + 1;
+  //       break;
+  //   }
+  //   if (lastHotspot) {
+  //     var perspective = {
+  //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+  //       radius: radius,
+  //     };
+  //     lastHotspot.setPerspective(perspective);
+  //     var position = lastHotspot.position();
+  //     var result = {
+  //       yaw: position.yaw,
+  //       pitch: position.pitch,
+  //       perspective: perspective,
+  //     };
+  //     console.log(JSON.stringify(result));
+  //   }
+  // });
+
   // DOM elements for view controls.
   var viewUpElement = document.querySelector('#viewUp');
   var viewDownElement = document.querySelector('#viewDown');
@@ -171,15 +256,42 @@
 
   // Associate view controls with elements.
   var controls = viewer.controls();
-  controls.registerMethod('upElement',    new Marzipano.ElementPressControlMethod(viewUpElement,     'y', -velocity, friction), true);
-  controls.registerMethod('downElement',  new Marzipano.ElementPressControlMethod(viewDownElement,   'y',  velocity, friction), true);
-  controls.registerMethod('leftElement',  new Marzipano.ElementPressControlMethod(viewLeftElement,   'x', -velocity, friction), true);
-  controls.registerMethod('rightElement', new Marzipano.ElementPressControlMethod(viewRightElement,  'x',  velocity, friction), true);
-  controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
-  controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
+  controls.registerMethod(
+    'upElement',
+    new Marzipano.ElementPressControlMethod(viewUpElement, 'y', -velocity, friction),
+    true,
+  );
+  controls.registerMethod(
+    'downElement',
+    new Marzipano.ElementPressControlMethod(viewDownElement, 'y', velocity, friction),
+    true,
+  );
+  controls.registerMethod(
+    'leftElement',
+    new Marzipano.ElementPressControlMethod(viewLeftElement, 'x', -velocity, friction),
+    true,
+  );
+  controls.registerMethod(
+    'rightElement',
+    new Marzipano.ElementPressControlMethod(viewRightElement, 'x', velocity, friction),
+    true,
+  );
+  controls.registerMethod(
+    'inElement',
+    new Marzipano.ElementPressControlMethod(viewInElement, 'zoom', -velocity, friction),
+    true,
+  );
+  controls.registerMethod(
+    'outElement',
+    new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom', velocity, friction),
+    true,
+  );
 
   function sanitize(s) {
-    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
+    return s
+      .replace('&', '&amp;')
+      .replace('<', '&lt;')
+      .replace('>', '&gt;');
   }
 
   function switchScene(scene) {
@@ -244,8 +356,22 @@
     }
   }
 
-  function createLinkHotspotElement(hotspot) {
+  // Create text hotspot element
+  function createTextHotspotElement(text) {
+    var wrapper = document.createElement('p');
+    wrapper.classList.add('text-hotspot');
+    wrapper.innerHTML = text;
+    return wrapper;
+  }
 
+  function createEmbeddedElement() {
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = '<iframe id="existing-iframe-example" width="640" height="410" src="https://www.youtube.com/embed/EtNTr1sq-VE?autoplay=1&mute=1&enablejsapi=1" frameborder="0" style="border: solid 4px #37474F"></iframe>'
+    wrapper.classList.add('embedded-hotspot');
+    return wrapper;
+  }
+
+  function createLinkHotspotElement(hotspot) {
     // Create wrapper element to hold icon and tooltip.
     var wrapper = document.createElement('div');
     wrapper.classList.add('hotspot');
@@ -257,7 +383,7 @@
     icon.classList.add('link-hotspot-icon');
 
     // Set rotation transform.
-    var transformProperties = [ '-ms-transform', '-webkit-transform', 'transform' ];
+    var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
     for (var i = 0; i < transformProperties.length; i++) {
       var property = transformProperties[i];
       icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)';
@@ -285,7 +411,6 @@
   }
 
   function createInfoHotspotElement(hotspot) {
-
     // Create wrapper element to hold icon and tooltip.
     var wrapper = document.createElement('div');
     wrapper.classList.add('hotspot');
@@ -359,8 +484,7 @@
 
   // Prevent touch and scroll events from reaching the parent element.
   function stopTouchAndScrollEventPropagation(element, eventList) {
-    var eventList = [ 'touchstart', 'touchmove', 'touchend', 'touchcancel',
-                      'wheel', 'mousewheel' ];
+    var eventList = ['touchstart', 'touchmove', 'touchend', 'touchcancel', 'wheel', 'mousewheel'];
     for (var i = 0; i < eventList.length; i++) {
       element.addEventListener(eventList[i], function(event) {
         event.stopPropagation();
@@ -388,5 +512,4 @@
 
   // Display the initial scene.
   switchScene(scenes[0]);
-
 })();

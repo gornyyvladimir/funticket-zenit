@@ -102,7 +102,19 @@ var APP_DATA = {
           "target": "11-sector_10"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots": [],
+      "embeddedHotspots": [
+        {
+          "yaw":-2.968761257161395,
+          "pitch":-0.293000029604336,
+          "perspective":
+          {
+            "extraRotations":"rotateX(24deg) rotateY(0deg) rotateZ(-3deg)",
+            "radius":4464
+          }
+        }
+      ],
     },
     {
       "id": "1-scene",
@@ -206,7 +218,8 @@ var APP_DATA = {
           "target": "11-sector_10"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots": [],
     },
     {
       "id": "2-sector_1",
@@ -304,7 +317,18 @@ var APP_DATA = {
           "target": "12-sector_14"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots": [
+        {
+          "yaw": 2.901841617327527,
+          "pitch": 1.0986387611918715,
+          "perspective": {
+            "extraRotations": "rotateX(0deg) rotateY(0deg) rotateZ(-8deg)",
+            "radius": 500
+          },
+          "text": "Сектор 1",
+        },
+      ],
     },
     {
       "id": "3-sector_2",
@@ -408,7 +432,8 @@ var APP_DATA = {
           "target": "2-sector_1"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":2.862837560210597,"pitch":1.1155866161208632,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(2deg)","radius":500},"text":"Сектор 2"}]
     },
     {
       "id": "4-sector_3",
@@ -506,7 +531,8 @@ var APP_DATA = {
           "target": "3-sector_2"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":3.011259491296209,"pitch":1.1520920115432318,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(1deg)","radius":500},"text":"Сектор 3"}],
     },
     {
       "id": "5-sector_4",
@@ -604,7 +630,8 @@ var APP_DATA = {
           "target": "4-sector_3"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":2.8925332834504722,"pitch":1.0526105314505632,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(4deg)","radius":500},"text":"Сектор 4"}],
     },
     {
       "id": "6-sector_5",
@@ -708,7 +735,8 @@ var APP_DATA = {
           "target": "8-sector_7"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":-3.1298856199882845,"pitch":1.154799498624575,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(-3deg)","radius":500},"text":"Сектор 5"}],
     },
     {
       "id": "7-sector_6",
@@ -806,7 +834,8 @@ var APP_DATA = {
           "target": "8-sector_7"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":3.0569974940424594,"pitch":1.1682194434942517,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(-4deg)","radius":500},"text":"Сектор 6"}],
     },
     {
       "id": "8-sector_7",
@@ -904,7 +933,8 @@ var APP_DATA = {
           "target": "6-sector_5"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":2.413124499421361,"pitch":1.208506305096174,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":500},"text":"Сектор 7"}],
     },
     {
       "id": "9-sector_8",
@@ -1008,7 +1038,8 @@ var APP_DATA = {
           "target": "1-scene"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":2.568713984270693,"pitch":1.3163523527493624,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(-16deg)","radius":500},"text":"Сектор 8"}],
     },
     {
       "id": "10-sector_9",
@@ -1106,7 +1137,8 @@ var APP_DATA = {
           "target": "11-sector_10"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":0.2995680829937122,"pitch":1.1422956939974735,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(4deg)","radius":500},"text":"Сектор 9"}],
     },
     {
       "id": "11-sector_10",
@@ -1204,7 +1236,8 @@ var APP_DATA = {
           "target": "8-sector_7"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":1.1348439036629259,"pitch":1.1396806215718236,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(3deg)","radius":500},"text":"Сектор 10"}],
     },
     {
       "id": "12-sector_14",
@@ -1302,7 +1335,8 @@ var APP_DATA = {
           "target": "1-scene"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "textHotspots":[{"yaw":2.6542785126393458,"pitch":1.0701696066349768,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(1deg)","radius":500},"text":"Сектор 14"}]
     }
   ],
   "name": "Project Title",
