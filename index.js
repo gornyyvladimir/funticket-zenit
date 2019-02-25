@@ -112,14 +112,15 @@
         .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
     });
 
-    if (data.embeddedHotspots) {
-      data.embeddedHotspots.forEach(function(hotspot) {
-        var element = createEmbeddedElement();
-        scene
-          .hotspotContainer()
-          .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
-      });
-    }
+    // Create embedded Hotspots
+    // if (data.embeddedHotspots) {
+    //   data.embeddedHotspots.forEach(function(hotspot) {
+    //     var element = createEmbeddedElement();
+    //     scene
+    //       .hotspotContainer()
+    //       .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
+    //   });
+    // }
 
     return {
       data: data,
