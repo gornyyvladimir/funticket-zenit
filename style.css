@@ -855,6 +855,7 @@ body.view-control-buttons .viewControlButton {
 
 .embedded-hotspot {
   /* background-color: red; */
-  width: 640px;
-  height: 410px;
+  cursor: pointer;
+  width: 200px;
+  height: 150px;
 }
