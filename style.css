@@ -851,6 +851,7 @@ body.view-control-buttons .viewControlButton {
   font-size: 8rem;
   text-transform: uppercase;
   white-space: nowrap;
+  color: #fff;
 }
 
 .embedded-hotspot {
@@ -858,4 +859,13 @@ body.view-control-buttons .viewControlButton {
   cursor: pointer;
   width: 200px;
   height: 150px;
+}
+
+.modal-content-wrapper {
+  height: 360px;
+}
+
+.modal-content-wrapper iframe {
+  width: 100%;
+  height: 100%;
 }

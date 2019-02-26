@@ -13,7 +13,8 @@
         width: device-width;
       }
     </style>
-    <link rel="stylesheet" href="vendor/reset.min.css" />
+    <!-- <link rel="stylesheet" href="vendor/reset.min.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="multiple-scenes view-control-buttons">
@@ -113,13 +114,28 @@
       <img class="icon" src="img/minus.png" />
     </a>
 
-    <!-- <a href="#" class="buy-ticket">Купить билет</a> -->
+    <a href="#" class="button is-link is-large">Купить билет</a>
 
-    <audio src="/audio/russia.mp3" id="russia">
-    </audio>
+    <div id="gazprom" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modal-content-wrapper">
+          <iframe
+            width="640"
+            height="360"
+            src="https://www.youtube.com/embed/lSjSwynKtvU"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
-    <audio src="/audio/tatarstan.mp3" id="tatarstan">
-    </audio>
+    <audio src="/audio/russia.mp3" id="russia"></audio>
+
+    <audio src="/audio/tatarstan.mp3" id="tatarstan"></audio>
 
     <script src="vendor/es5-shim.js"></script>
     <script src="vendor/eventShim.js"></script>
