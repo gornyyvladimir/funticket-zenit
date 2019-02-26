@@ -1,18 +1,3 @@
-/*
- * Copyright 2016 Google Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 'use strict';
 
 (function() {
@@ -23,30 +8,8 @@
 
   // Grab elements from DOM.
   var panoElement = document.querySelector('#pano');
-  var sceneNameElement = document.querySelector('#titleBar .sceneName');
-  var sceneListElement = document.querySelector('#sceneList');
-  var sceneElements = document.querySelectorAll('#sceneList .scene');
-  var sceneListToggleElement = document.querySelector('#sceneListToggle');
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
-
-  // Detect desktop or mobile mode.
-  if (window.matchMedia) {
-    var setMode = function() {
-      if (mql.matches) {
-        document.body.classList.remove('desktop');
-        document.body.classList.add('mobile');
-      } else {
-        document.body.classList.remove('mobile');
-        document.body.classList.add('desktop');
-      }
-    };
-    var mql = matchMedia('(max-width: 500px), (max-height: 500px)');
-    setMode();
-    mql.addListener(setMode);
-  } else {
-    document.body.classList.add('desktop');
-  }
 
   // Detect whether we are on a touch device.
   document.body.classList.add('no-touch');
@@ -179,90 +142,6 @@
     document.body.classList.add('fullscreen-disabled');
   }
 
-  // Set handler for scene list toggle.
-  sceneListToggleElement.addEventListener('click', toggleSceneList);
-
-  // Start with the scene list open on desktop.
-  // if (!document.body.classList.contains('mobile')) {
-  //   showSceneList();
-  // }
-
-  // Set handler for scene switch.
-  scenes.forEach(function(scene) {
-    var el = document.querySelector('#sceneList .scene[data-id="' + scene.data.id + '"]');
-    el.addEventListener('click', function() {
-      switchScene(scene);
-      // On mobile, hide scene list after selecting a scene.
-      if (document.body.classList.contains('mobile')) {
-        hideSceneList();
-      }
-    });
-  });
-
-  // var lastHotspot;
-
-  // document.addEventListener('dblclick', function(event) {
-  //   var coords = viewer.view().screenToCoordinates({ x: event.clientX, y: event.clientY });
-  //   var element = createEmbeddedElement();
-  //   lastHotspot = viewer
-  //     .scene()
-  //     .hotspotContainer()
-  //     .createHotspot(
-  //       element,
-  //       { yaw: coords.yaw, pitch: coords.pitch },
-  //       {
-  //         perspective: {
-  //           radius: 1300,
-  //         },
-  //       },
-  //     );
-  //   // console.log(viewer.view);
-  //   console.log(coords);
-  // });
-
-  // var x = 0;
-  // var y = 0;
-  // var z = 0;
-  // var radius = 2000;
-  // document.addEventListener('keypress', function(event) {
-  //   // console.log(event.key);
-  //   // console.log(event);
-  //   switch (event.key) {
-  //     case 'x':
-  //       x = event.ctrlKey ? x - 1 : x + 1;
-  //       break;
-  //     case 'y':
-  //       y = event.ctrlKey ? y - 1 : y + 1;
-  //       break;
-  //     case 'z':
-  //       z = event.ctrlKey ? z - 1 : z + 1;
-  //       break;
-  //     case 'q':
-  //       x = 0;
-  //       y = 0;
-  //       z = 0;
-  //       radius = 2000;
-  //       break;
-  //     case 'r':
-  //       radius = event.ctrlKey ? radius - 1 : radius + 1;
-  //       break;
-  //   }
-  //   if (lastHotspot) {
-  //     var perspective = {
-  //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
-  //       radius: radius,
-  //     };
-  //     lastHotspot.setPerspective(perspective);
-  //     var position = lastHotspot.position();
-  //     var result = {
-  //       yaw: position.yaw,
-  //       pitch: position.pitch,
-  //       perspective: perspective,
-  //     };
-  //     console.log(JSON.stringify(result));
-  //   }
-  // });
-
   // DOM elements for view controls.
   var viewUpElement = document.querySelector('#viewUp');
   var viewDownElement = document.querySelector('#viewDown');
@@ -308,50 +187,15 @@
     true,
   );
 
-  function sanitize(s) {
-    return s
-      .replace('&', '&amp;')
-      .replace('<', '&lt;')
-      .replace('>', '&gt;');
-  }
+  // Register the custom control method.
+  var deviceOrientationControlMethod = new DeviceOrientationControlMethod();
+  controls.registerMethod('deviceOrientation', deviceOrientationControlMethod);
 
   function switchScene(scene) {
     stopAutorotate();
     scene.view.setParameters(scene.data.initialViewParameters);
     scene.scene.switchTo();
     startAutorotate();
-    updateSceneName(scene);
-    updateSceneList(scene);
-  }
-
-  function updateSceneName(scene) {
-    sceneNameElement.innerHTML = sanitize(scene.data.name);
-  }
-
-  function updateSceneList(scene) {
-    for (var i = 0; i < sceneElements.length; i++) {
-      var el = sceneElements[i];
-      if (el.getAttribute('data-id') === scene.data.id) {
-        el.classList.add('current');
-      } else {
-        el.classList.remove('current');
-      }
-    }
-  }
-
-  function showSceneList() {
-    sceneListElement.classList.add('enabled');
-    sceneListToggleElement.classList.add('enabled');
-  }
-
-  function hideSceneList() {
-    sceneListElement.classList.remove('enabled');
-    sceneListToggleElement.classList.remove('enabled');
-  }
-
-  function toggleSceneList() {
-    sceneListElement.classList.toggle('enabled');
-    sceneListToggleElement.classList.toggle('enabled');
   }
 
   function startAutorotate() {
@@ -397,9 +241,8 @@
 
   function createAudioElement(id) {
     var audioButton = document.createElement('div');
-    audioButton.classList.add('embedded-hotspot');
+    audioButton.classList.add('audio-hotspot');
     var audio = document.getElementById(id);
-    console.log(id);
     audioButton.addEventListener('click', function(event) {
       if (!audio.paused && event.target === audioButton) {
         audio.pause();
@@ -419,7 +262,7 @@
     wrapper.addEventListener('click', function() {
       document.getElementById(id).classList.add('is-active');
     });
-    wrapper.classList.add('embedded-hotspot');
+    wrapper.classList.add('video-hotspot');
     return wrapper;
   }
 
@@ -571,8 +414,44 @@
   var modalClose = document.querySelector('.modal-close');
   var modalBackground = document.querySelector('.modal-background');
   var modal = document.querySelector('.modal');
-  modalClose.addEventListener('click', closeModal)
-  modalBackground.addEventListener('click', closeModal)
+  modalClose.addEventListener('click', closeModal);
+  modalBackground.addEventListener('click', closeModal);
+
+  // Set up control for enabling/disabling device orientation.
+
+  var enabled = false;
+
+  var toggleElement = document.getElementById('deviceOrientationToggle');
+
+  function enable() {
+    if (autorotateToggleElement.classList.contains('enabled')) {
+      autorotateToggleElement.classList.remove('enabled');
+      stopAutorotate();
+    }
+    var view = viewer.view();
+    deviceOrientationControlMethod.getPitch(function(err, pitch) {
+      if (!err) {
+        view.setPitch(pitch);
+      }
+    });
+    controls.enableMethod('deviceOrientation');
+    enabled = true;
+  }
+
+  function disable() {
+    controls.disableMethod('deviceOrientation');
+    enabled = false;
+  }
+
+  function toggle() {
+    if (enabled) {
+      disable();
+    } else {
+      enable();
+    }
+  }
+
+  toggleElement.addEventListener('click', toggle);
 
   // Display the initial scene.
   switchScene(scenes[0]);

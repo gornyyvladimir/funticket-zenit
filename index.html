@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project Title</title>
+    <title>Zenit Virtual Tour</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta
@@ -17,106 +17,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="multiple-scenes view-control-buttons">
+  <body>
     <div id="pano"></div>
-
-    <div id="sceneList">
-      <ul class="scenes">
-        <a href="#" class="scene" data-id="0-main">
-          <li class="text">main</li>
-        </a>
-
-        <a href="#" class="scene" data-id="1-scene">
-          <li class="text">scene</li>
-        </a>
-
-        <a href="#" class="scene" data-id="2-sector_1">
-          <li class="text">sector_1</li>
-        </a>
-
-        <a href="#" class="scene" data-id="3-sector_2">
-          <li class="text">sector_2</li>
-        </a>
-
-        <a href="#" class="scene" data-id="4-sector_3">
-          <li class="text">sector_3</li>
-        </a>
-
-        <a href="#" class="scene" data-id="5-sector_4">
-          <li class="text">sector_4</li>
-        </a>
-
-        <a href="#" class="scene" data-id="6-sector_5">
-          <li class="text">sector_5</li>
-        </a>
-
-        <a href="#" class="scene" data-id="7-sector_6">
-          <li class="text">sector_6</li>
-        </a>
-
-        <a href="#" class="scene" data-id="8-sector_7">
-          <li class="text">sector_7</li>
-        </a>
-
-        <a href="#" class="scene" data-id="9-sector_8">
-          <li class="text">sector_8</li>
-        </a>
-
-        <a href="#" class="scene" data-id="10-sector_9">
-          <li class="text">sector_9</li>
-        </a>
-
-        <a href="#" class="scene" data-id="11-sector_10">
-          <li class="text">sector_10</li>
-        </a>
-
-        <a href="#" class="scene" data-id="12-sector_14">
-          <li class="text">sector_14</li>
-        </a>
-      </ul>
+    <div class="ui">
+      <div class="buttons links">
+        <a href="http://go.zenit-kazan.com/" class="button is-link link">Купить билет</a>
+        <a href="https://shop.zenit-kazan.com/" class="button is-link link">Интернет магазин</a>
+      </div>
+      <div class="buttons is-centered controls">
+        <button id="viewUp" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-angle-up"></i>
+          </span>
+        </button>
+        <button id="viewDown" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-angle-down"></i>
+          </span>
+        </button>
+        <button id="viewLeft" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-angle-left"></i>
+          </span>
+        </button>
+        <button id="viewRight" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </button>
+        <button id="viewIn" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-plus"></i>
+          </span>
+        </button>
+        <button id="viewOut" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-minus"></i>
+          </span>
+        </button>
+        <button id="autorotateToggle" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-sync-alt"></i>
+          </span>
+        </button>
+        <button id="fullscreenToggle" class="button is-link">
+          <span class="icon is-small">
+            <i class="fas fa-expand"></i>
+          </span>
+        </button>
+        <button id="deviceOrientationToggle" class="button is-link is-hidden-desktop">
+            <span class="icon is-small">
+              <i class="fas fa-mobile-alt"></i>
+            </span>
+          </button>
+      </div>
     </div>
 
-    <div id="titleBar" style="display: none">
-      <h1 class="sceneName"></h1>
-    </div>
-
-    <a href="#" id="autorotateToggle">
-      <img class="icon off" src="img/play.png" />
-      <img class="icon on" src="img/pause.png" />
-    </a>
-
-    <a href="#" id="fullscreenToggle">
-      <img class="icon off" src="img/fullscreen.png" />
-      <img class="icon on" src="img/windowed.png" />
-    </a>
-
-    <a href="#" id="sceneListToggle" style="display: none">
-      <img class="icon off" src="img/expand.png" />
-      <img class="icon on" src="img/collapse.png" />
-    </a>
-
-    <a href="#" id="viewUp" class="viewControlButton viewControlButton-1">
-      <img class="icon" src="img/up.png" />
-    </a>
-    <a href="#" id="viewDown" class="viewControlButton viewControlButton-2">
-      <img class="icon" src="img/down.png" />
-    </a>
-    <a href="#" id="viewLeft" class="viewControlButton viewControlButton-3">
-      <img class="icon" src="img/left.png" />
-    </a>
-    <a href="#" id="viewRight" class="viewControlButton viewControlButton-4">
-      <img class="icon" src="img/right.png" />
-    </a>
-    <a href="#" id="viewIn" class="viewControlButton viewControlButton-5">
-      <img class="icon" src="img/plus.png" />
-    </a>
-    <a href="#" id="viewOut" class="viewControlButton viewControlButton-6">
-      <img class="icon" src="img/minus.png" />
-    </a>
-
-    <a href="#" class="button is-link is-large">Купить билет</a>
-
-    <div id="gazprom" class="modal">
+    <div id="modal-gazprom" class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
         <div class="modal-content-wrapper">
@@ -133,9 +90,8 @@
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
-    <audio src="/audio/russia.mp3" id="russia"></audio>
-
-    <audio src="/audio/tatarstan.mp3" id="tatarstan"></audio>
+    <audio src="/audio/russia.mp3" id="audio-russia"></audio>
+    <audio src="/audio/tatarstan.mp3" id="audio-tatarstan"></audio>
 
     <script src="vendor/es5-shim.js"></script>
     <script src="vendor/eventShim.js"></script>
@@ -144,6 +100,8 @@
     <script src="vendor/screenfull.min.js"></script>
     <script src="vendor/bowser.min.js"></script>
     <script src="vendor/marzipano.js"></script>
+    <script src="DeviceOrientationControlMethod.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <script src="data.js"></script>
     <script src="index.js"></script>

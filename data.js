@@ -2,7 +2,7 @@ var APP_DATA = {
   "scenes": [
     {
       "id": "0-main",
-      "name": "main",
+      "name": "Игровое поле",
       "levels": [
         {
           "tileSize": 256,
@@ -110,16 +110,16 @@ var APP_DATA = {
         {"yaw":-1.0066023141611389,"pitch":-0.31258233711347927,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":1200}}
       ],
       "audioHotspots": [
-        {"yaw":2.6128911910505224,"pitch":-0.3814233054554954,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "russia"},
-        {"yaw":2.8744594637720695,"pitch":-0.3852485132106054,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "tatarstan"}
+        {"yaw":2.6128911910505224,"pitch":-0.3814233054554954,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "audio-russia"},
+        {"yaw":2.8744594637720695,"pitch":-0.3852485132106054,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "audio-tatarstan"}
       ],
       "videoHotspots": [
-        {"yaw":-2.9713342957806805,"pitch":-0.2951091037643323,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":1300}, "id": "gazprom"},
+        {"yaw":-2.9713342957806805,"pitch":-0.2951091037643323,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":1300}, "id": "modal-gazprom"},
       ]
     },
     {
       "id": "1-scene",
-      "name": "scene",
+      "name": "Сцена",
       "levels": [
         {
           "tileSize": 256,
@@ -224,7 +224,7 @@ var APP_DATA = {
     },
     {
       "id": "2-sector_1",
-      "name": "sector_1",
+      "name": "Сектор 1",
       "levels": [
         {
           "tileSize": 256,
@@ -333,7 +333,7 @@ var APP_DATA = {
     },
     {
       "id": "3-sector_2",
-      "name": "sector_2",
+      "name": "Сектор 2",
       "levels": [
         {
           "tileSize": 256,
@@ -438,7 +438,7 @@ var APP_DATA = {
     },
     {
       "id": "4-sector_3",
-      "name": "sector_3",
+      "name": "Сектор 3",
       "levels": [
         {
           "tileSize": 256,
@@ -537,7 +537,7 @@ var APP_DATA = {
     },
     {
       "id": "5-sector_4",
-      "name": "sector_4",
+      "name": "Сектор 4",
       "levels": [
         {
           "tileSize": 256,
@@ -636,7 +636,7 @@ var APP_DATA = {
     },
     {
       "id": "6-sector_5",
-      "name": "sector_5",
+      "name": "Сектор 5",
       "levels": [
         {
           "tileSize": 256,
@@ -741,7 +741,7 @@ var APP_DATA = {
     },
     {
       "id": "7-sector_6",
-      "name": "sector_6",
+      "name": "Сектор 6",
       "levels": [
         {
           "tileSize": 256,
@@ -840,7 +840,7 @@ var APP_DATA = {
     },
     {
       "id": "8-sector_7",
-      "name": "sector_7",
+      "name": "Сектор 7",
       "levels": [
         {
           "tileSize": 256,
@@ -939,7 +939,7 @@ var APP_DATA = {
     },
     {
       "id": "9-sector_8",
-      "name": "sector_8",
+      "name": "Сектор 8",
       "levels": [
         {
           "tileSize": 256,
@@ -1044,7 +1044,7 @@ var APP_DATA = {
     },
     {
       "id": "10-sector_9",
-      "name": "sector_9",
+      "name": "Сектор 9",
       "levels": [
         {
           "tileSize": 256,
@@ -1143,7 +1143,7 @@ var APP_DATA = {
     },
     {
       "id": "11-sector_10",
-      "name": "sector_10",
+      "name": "Сектор 10",
       "levels": [
         {
           "tileSize": 256,
@@ -1242,7 +1242,7 @@ var APP_DATA = {
     },
     {
       "id": "12-sector_14",
-      "name": "sector_14",
+      "name": "Сектор 14",
       "levels": [
         {
           "tileSize": 256,
