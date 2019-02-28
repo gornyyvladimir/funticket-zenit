@@ -476,7 +476,7 @@
   });
   setTimeout(function(){
     vrTourButton.classList.remove('is-hidden');
-  }, 100);
+  }, 5000);
 
   var map = document.getElementById('map');
   mapButton.addEventListener('click', function(event){
