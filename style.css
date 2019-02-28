@@ -562,7 +562,7 @@ a, a:hover, a:active, a:visited {
   font-size: 0;
   margin: 1rem;
   padding: 1rem;
-  background-image: url(/img/map.jpg);
+  background-image: url(https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/img/map.jpg);
   background-size: contain;
   background-position: center center;
   border: 5px solid #076bad;
@@ -592,7 +592,7 @@ a, a:hover, a:active, a:visited {
   width: 10px;
   height: 10px;
   /* background-color: #076bad; */
-  background: url(/img/map-marker.png) center center no-repeat;
+  background: url(https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/img/map-marker.png) center center no-repeat;
   background-size: 220% 220%;
   border-radius: 50%;
 }
