@@ -538,7 +538,7 @@ a, a:hover, a:active, a:visited {
 .marker {
   width: 32px;
   height: 32px;
-  background-image: url(/img/marker.png);
+  background-image: url(https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/img/marker.png);
   animation: blink 1s steps(9, end) infinite;
   cursor: pointer;
 }
