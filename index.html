@@ -19,6 +19,24 @@
   </head>
   <body>
     <div id="pano"></div>
+    <div id="loader">
+      <div class="sk-circle">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+      </div>
+      <span class="loader-text">Загружается...</span>
+      <a href="https://go.zenit-kazan.com/" class="loader-button">Купить билет</a>
+    </div>
     <div class="ui">
       <div class="buttons links">
         <a href="http://go.zenit-kazan.com/" class="button link left">Купить билет</a>
@@ -70,10 +88,10 @@
           </span>
         </button>
         <button id="deviceOrientationToggle" class="button is-link is-hidden-desktop">
-            <span class="icon is-small">
-              <i class="fas fa-mobile-alt"></i>
-            </span>
-          </button>
+          <span class="icon is-small">
+            <i class="fas fa-mobile-alt"></i>
+          </span>
+        </button>
       </div>
     </div>
     <div id="map" class="map hide-right is-hidden-touch">
@@ -108,8 +126,14 @@
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
 
-    <audio src="https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/audio/russia.mp3" id="audio-russia"></audio>
-    <audio src="https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/audio/tatarstan.mp3" id="audio-tatarstan"></audio>
+    <audio
+      src="https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/audio/russia.mp3"
+      id="audio-russia"
+    ></audio>
+    <audio
+      src="https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/audio/tatarstan.mp3"
+      id="audio-tatarstan"
+    ></audio>
 
     <script src="vendor/es5-shim.js"></script>
     <script src="vendor/eventShim.js"></script>

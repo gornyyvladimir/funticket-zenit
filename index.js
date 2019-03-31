@@ -1,5 +1,22 @@
 'use strict';
 
+function debounce(f, ms) {
+  let timer = null;
+
+  return function(...args) {
+    const onComplete = () => {
+      f.apply(this, args);
+      timer = null;
+    };
+
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    timer = setTimeout(onComplete, ms);
+  };
+}
+
 (function() {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
@@ -32,6 +49,18 @@
 
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
+  var stage = viewer.stage();
+
+  function hide(element) {
+    element.style.display = 'none';
+  }
+
+  var debounceHide = debounce(hide, 1000);
+  var loader = document.getElementById('loader');
+
+  stage.addEventListener('renderComplete', function() {
+    debounceHide(loader);
+  });
 
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
@@ -459,7 +488,7 @@
   //   enable();
   // }, false);
 
-  setTimeout(function(){
+  setTimeout(function() {
     enable();
   }, 2000);
 
@@ -467,19 +496,19 @@
   var vrTourButton = document.getElementById('vr-tour');
   var shopButton = document.getElementById('shop');
   var mapButton = document.getElementById('map-button');
-  vrTourButton.addEventListener('click', function(e){
+  vrTourButton.addEventListener('click', function(e) {
     e.preventDefault();
     vrTourButton.classList.add('is-hidden');
     shopButton.classList.remove('is-hidden');
     mapButton.classList.remove('is-hidden');
     //some actions
   });
-  setTimeout(function(){
+  setTimeout(function() {
     vrTourButton.classList.remove('is-hidden');
-  }, 5000);
+  }, 15000);
 
   var map = document.getElementById('map');
-  mapButton.addEventListener('click', function(event){
+  mapButton.addEventListener('click', function(event) {
     event.preventDefault();
     map.classList.toggle('hide-right');
   });
@@ -488,19 +517,19 @@
 
   function removeActive() {
     var mapMarkers = document.querySelectorAll('.map-marker');
-    for(var i=0; i<mapMarkers.length; i++) {
+    for (var i = 0; i < mapMarkers.length; i++) {
       mapMarkers[i].classList.remove('active');
     }
   }
 
-  for(var i=0; i<mapMarkers.length; i++) {
-    mapMarkers[i].addEventListener('click', function(e){
+  for (var i = 0; i < mapMarkers.length; i++) {
+    mapMarkers[i].addEventListener('click', function(e) {
       e.preventDefault();
       removeActive();
       e.target.classList.add('active');
       var sceneId = e.target.dataset.scene;
-      switchScene(scenes[sceneId])
-    })
+      switchScene(scenes[sceneId]);
+    });
   }
 
   // Display the initial scene.
