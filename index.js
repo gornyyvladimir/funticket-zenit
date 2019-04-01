@@ -1,21 +1,21 @@
 'use strict';
 
-function debounce(f, ms) {
-  let timer = null;
+// function debounce(f, ms) {
+//   let timer = null;
 
-  return function(...args) {
-    const onComplete = () => {
-      f.apply(this, args);
-      timer = null;
-    };
+//   return function(...args) {
+//     const onComplete = () => {
+//       f.apply(this, args);
+//       timer = null;
+//     };
 
-    if (timer) {
-      clearTimeout(timer);
-    }
+//     if (timer) {
+//       clearTimeout(timer);
+//     }
 
-    timer = setTimeout(onComplete, ms);
-  };
-}
+//     timer = setTimeout(onComplete, ms);
+//   };
+// }
 
 (function() {
   var Marzipano = window.Marzipano;
@@ -49,18 +49,18 @@ function debounce(f, ms) {
 
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
-  var stage = viewer.stage();
+  // var stage = viewer.stage();
 
   function hide(element) {
     element.style.display = 'none';
   }
 
-  var debounceHide = debounce(hide, 1000);
-  var loader = document.getElementById('loader');
+  // var debounceHide = debounce(hide, 1000);
+  // var loader = document.getElementById('loader');
 
-  stage.addEventListener('renderComplete', function() {
-    debounceHide(loader);
-  });
+  // stage.addEventListener('renderComplete', function() {
+  //   debounceHide(loader);
+  // });
 
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
@@ -531,6 +531,11 @@ function debounce(f, ms) {
       switchScene(scenes[sceneId]);
     });
   }
+
+  window.addEventListener('load', function(){
+    var loader = document.getElementById('loader');
+    hide(loader);
+  });
 
   // Display the initial scene.
   switchScene(scenes[0]);
