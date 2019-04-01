@@ -105,17 +105,12 @@ var APP_DATA = {
       "infoHotspots": [],
       "textHotspots": [],
       "embeddedHotspots": [
-        {"yaw":2.208214548749593,"pitch":-0.2712125409687225,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":1300}},
-        {"yaw":0.2617072504697635,"pitch":-0.28883017215022555,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":1300}},
-        {"yaw":-1.0066023141611389,"pitch":-0.31258233711347927,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":1200}}
+        {"yaw": -2.969202040832462,"pitch":  -0.290027319380337,"perspective": {"extraRotations": "rotateX(13deg) rotateY(-15deg) rotateZ(0deg)","radius": 8850}}
       ],
       "audioHotspots": [
         {"yaw":2.6128911910505224,"pitch":-0.3814233054554954,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "audio-russia"},
         {"yaw":2.8744594637720695,"pitch":-0.3852485132106054,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "audio-tatarstan"}
       ],
-      "videoHotspots": [
-        {"yaw":-2.9713342957806805,"pitch":-0.2951091037643323,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":1300}, "id": "modal-gazprom"},
-      ]
     },
     {
       "id": "1-scene",

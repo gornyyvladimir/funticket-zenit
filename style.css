@@ -530,12 +530,18 @@ a, a:hover, a:active, a:visited {
   color: #fff;
 }
 
-.embedded-hotspot,
 .audio-hotspot,
 .video-hotspot {
   cursor: pointer;
   width: 200px;
   height: 150px;
+}
+
+.embedded-hotspot {
+  cursor: pointer;
+  width: 1280px;
+  height: 720px;
+  /* background: red; */
 }
 
 .modal-content-wrapper {

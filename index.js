@@ -17,6 +17,21 @@
 //   };
 // }
 
+var VIDEO_FORMATS = [
+  {
+    ext: 'mp4',
+    type: 'video/mp4',
+  },
+  {
+    ext: 'webm',
+    type: 'video/webm',
+  },
+  {
+    ext: 'ogg',
+    type: 'video/ogv',
+  },
+];
+
 (function() {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
@@ -108,9 +123,101 @@
     if (data.embeddedHotspots) {
       data.embeddedHotspots.forEach(function(hotspot) {
         var element = createEmbeddedElement();
-        scene
+        var hotspotElement = scene
           .hotspotContainer()
           .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
+
+        var currentCoords = hotspot;
+
+        var radius = hotspot.perspective.radius,
+          x = 0,
+          y = 0,
+          z = 0;
+
+        document.addEventListener('keypress', function(event) {
+          var dragHotspot = hotspotElement;
+          if (event.key === 'd') {
+            currentCoords.yaw = currentCoords.yaw + 0.001;
+            dragHotspot.setPosition(currentCoords);
+          }
+          if (event.key === 'a') {
+            currentCoords.yaw = currentCoords.yaw - 0.001;
+            dragHotspot.setPosition(currentCoords);
+          }
+          if (event.key === 's') {
+            currentCoords.pitch = currentCoords.pitch + 0.001;
+            dragHotspot.setPosition(currentCoords);
+          }
+          if (event.key === 'w') {
+            currentCoords.pitch = currentCoords.pitch - 0.001;
+            dragHotspot.setPosition(currentCoords);
+          }
+          if (event.key === '+') {
+            radius += 30;
+            currentCoords.perspective.radius = radius;
+            dragHotspot.setPerspective({ radius: radius });
+          }
+          if (event.key === '-') {
+            radius -= 30;
+            currentCoords.perspective.radius = radius;
+            dragHotspot.setPerspective({ radius: radius });
+          }
+          if (event.key === 'y') {
+            y += 1;
+            currentCoords.perspective.radius = radius;
+            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+            dragHotspot.setPerspective({
+              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+              radius: radius,
+            });
+          }
+          if (event.key === 'h') {
+            y -= 1;
+            currentCoords.perspective.radius = radius;
+            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+            dragHotspot.setPerspective({
+              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+              radius: radius,
+            });
+          }
+          if (event.key === 'g') {
+            x += 1;
+            currentCoords.perspective.radius = radius;
+            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+            dragHotspot.setPerspective({
+              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+              radius: radius,
+            });
+          }
+          if (event.key === 'j') {
+            x -= 1;
+            currentCoords.perspective.radius = radius;
+            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+            dragHotspot.setPerspective({
+              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+              radius: radius,
+            });
+          }
+          if (event.key === 'b') {
+            z += 1;
+            currentCoords.perspective.radius = radius;
+            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+            dragHotspot.setPerspective({
+              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+              radius: radius,
+            });
+          }
+          if (event.key === 'n') {
+            z -= 1;
+            currentCoords.perspective.radius = radius;
+            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+            dragHotspot.setPerspective({
+              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+              radius: radius,
+            });
+          }
+          console.log(currentCoords);
+        });
       });
     }
 
@@ -261,9 +368,31 @@
   function createEmbeddedElement() {
     var wrapper = document.createElement('div');
     // wrapper.innerHTML = '<iframe id="existing-iframe-example" width="640" height="410" src="https://www.youtube.com/embed/EtNTr1sq-VE?autoplay=1&mute=1&enablejsapi=1" frameborder="0" style="border: solid 4px #37474F"></iframe>'
-    wrapper.addEventListener('click', function() {
-      window.location.href = 'http://www.gazprom.ru/';
+    // wrapper.addEventListener('click', function() {
+    //   window.location.href = 'http://www.gazprom.ru/';
+    // });
+    // Add video element
+    var video = document.createElement('video');
+    VIDEO_FORMATS.forEach(function(item) {
+      var source = document.createElement('source');
+      source.src = `video/zenit.${item.ext}`;
+      source.type = item.type;
+      video.appendChild(source);
     });
+    video.crossOrigin = 'anonymous';
+    video.loop = false;
+
+    video.addEventListener('click', function(){
+      event.target.muted = event.target.muted ? false : true;
+    })
+
+    // Prevent the video from going full screen on iOS.
+    video.playsInline = true;
+    video.webkitPlaysInline = true;
+    video.muted = true;
+    video.autoplay = true;
+    video.load();
+    wrapper.appendChild(video);
     wrapper.classList.add('embedded-hotspot');
     return wrapper;
   }
@@ -532,9 +661,14 @@
     });
   }
 
-  window.addEventListener('load', function(){
+  window.addEventListener('load', function() {
     var loader = document.getElementById('loader');
     hide(loader);
+  });
+
+  document.body.addEventListener('click', function(e) {
+    var view = viewer.view();
+    console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }));
   });
 
   // Display the initial scene.
