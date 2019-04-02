@@ -773,3 +773,8 @@ a, a:hover, a:active, a:visited {
             transform: scale(1);
   }
 }
+
+iframe {
+  width: 1280px;
+  height: 720px;
+}

@@ -367,32 +367,30 @@ var VIDEO_FORMATS = [
 
   function createEmbeddedElement() {
     var wrapper = document.createElement('div');
-    // wrapper.innerHTML = '<iframe id="existing-iframe-example" width="640" height="410" src="https://www.youtube.com/embed/EtNTr1sq-VE?autoplay=1&mute=1&enablejsapi=1" frameborder="0" style="border: solid 4px #37474F"></iframe>'
-    // wrapper.addEventListener('click', function() {
-    //   window.location.href = 'http://www.gazprom.ru/';
-    // });
+    wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/TYfxKyghbMk?autoplay=1&mute=1&enablejsapi=1&playsinline=1&controls=0" frameborder="0"></iframe>'
     // Add video element
-    var video = document.createElement('video');
-    VIDEO_FORMATS.forEach(function(item) {
-      var source = document.createElement('source');
-      source.src = `video/zenit.${item.ext}`;
-      source.type = item.type;
-      video.appendChild(source);
-    });
-    video.crossOrigin = 'anonymous';
-    video.loop = false;
+    // var video = document.createElement('video');
+    // VIDEO_FORMATS.forEach(function(item) {
+    //   var source = document.createElement('source');
+    //   source.src = `video/zenit.${item.ext}`;
+    //   source.type = item.type;
+    //   video.appendChild(source);
+    // });
+    // video.poster = 'preview.jpeg';
+    // video.crossOrigin = 'anonymous';
+    // video.loop = true;
 
-    video.addEventListener('click', function(){
-      event.target.muted = event.target.muted ? false : true;
-    })
+    // video.addEventListener('click', function(){
+    //   event.target.muted = event.target.muted ? false : true;
+    // })
 
-    // Prevent the video from going full screen on iOS.
-    video.playsInline = true;
-    video.webkitPlaysInline = true;
-    video.muted = true;
-    video.autoplay = true;
-    video.load();
-    wrapper.appendChild(video);
+    // // Prevent the video from going full screen on iOS.
+    // video.playsInline = true;
+    // video.webkitPlaysInline = true;
+    // video.muted = true;
+    // video.autoplay = true;
+    // video.load();
+    // wrapper.appendChild(video);
     wrapper.classList.add('embedded-hotspot');
     return wrapper;
   }
@@ -665,6 +663,13 @@ var VIDEO_FORMATS = [
     var loader = document.getElementById('loader');
     hide(loader);
   });
+
+  // setTimeout(function(){
+  //   var loader = document.getElementById('loader');
+  //   hide(loader)
+  // }, 3000);
+
+  // hide(loader)
 
   document.body.addEventListener('click', function(e) {
     var view = viewer.view();

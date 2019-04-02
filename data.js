@@ -105,7 +105,7 @@ var APP_DATA = {
       "infoHotspots": [],
       "textHotspots": [],
       "embeddedHotspots": [
-        {"yaw": -2.969202040832462,"pitch":  -0.290027319380337,"perspective": {"extraRotations": "rotateX(13deg) rotateY(-15deg) rotateZ(0deg)","radius": 8850}}
+        {"yaw": -2.969202040832462,"pitch":  -0.290027319380337,"perspective": {"extraRotations": "rotateX(13deg) rotateY(-15deg) rotateZ(0deg)","radius": 8730}}
       ],
       "audioHotspots": [
         {"yaw":2.6128911910505224,"pitch":-0.3814233054554954,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "audio-russia"},
