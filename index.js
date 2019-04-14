@@ -443,6 +443,7 @@ var VIDEO_FORMATS = [
     // Add click event handler.
     wrapper.addEventListener('click', function() {
       switchScene(findSceneById(hotspot.target));
+      ym(53275672, 'reachGoal', 'hotspot_click');
     });
 
     // Prevent touch and scroll events from reaching the parent element.
