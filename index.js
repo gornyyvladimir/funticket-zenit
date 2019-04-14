@@ -126,98 +126,98 @@ var VIDEO_FORMATS = [
         var hotspotElement = scene
           .hotspotContainer()
           .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
+          
+        // code for developers
+        // var currentCoords = hotspot;
 
-        var currentCoords = hotspot;
-
-        var radius = hotspot.perspective.radius,
-          x = 0,
-          y = 0,
-          z = 0;
-
-        document.addEventListener('keypress', function(event) {
-          var dragHotspot = hotspotElement;
-          if (event.key === 'd') {
-            currentCoords.yaw = currentCoords.yaw + 0.001;
-            dragHotspot.setPosition(currentCoords);
-          }
-          if (event.key === 'a') {
-            currentCoords.yaw = currentCoords.yaw - 0.001;
-            dragHotspot.setPosition(currentCoords);
-          }
-          if (event.key === 's') {
-            currentCoords.pitch = currentCoords.pitch + 0.001;
-            dragHotspot.setPosition(currentCoords);
-          }
-          if (event.key === 'w') {
-            currentCoords.pitch = currentCoords.pitch - 0.001;
-            dragHotspot.setPosition(currentCoords);
-          }
-          if (event.key === '+') {
-            radius += 30;
-            currentCoords.perspective.radius = radius;
-            dragHotspot.setPerspective({ radius: radius });
-          }
-          if (event.key === '-') {
-            radius -= 30;
-            currentCoords.perspective.radius = radius;
-            dragHotspot.setPerspective({ radius: radius });
-          }
-          if (event.key === 'y') {
-            y += 1;
-            currentCoords.perspective.radius = radius;
-            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
-            dragHotspot.setPerspective({
-              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
-              radius: radius,
-            });
-          }
-          if (event.key === 'h') {
-            y -= 1;
-            currentCoords.perspective.radius = radius;
-            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
-            dragHotspot.setPerspective({
-              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
-              radius: radius,
-            });
-          }
-          if (event.key === 'g') {
-            x += 1;
-            currentCoords.perspective.radius = radius;
-            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
-            dragHotspot.setPerspective({
-              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
-              radius: radius,
-            });
-          }
-          if (event.key === 'j') {
-            x -= 1;
-            currentCoords.perspective.radius = radius;
-            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
-            dragHotspot.setPerspective({
-              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
-              radius: radius,
-            });
-          }
-          if (event.key === 'b') {
-            z += 1;
-            currentCoords.perspective.radius = radius;
-            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
-            dragHotspot.setPerspective({
-              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
-              radius: radius,
-            });
-          }
-          if (event.key === 'n') {
-            z -= 1;
-            currentCoords.perspective.radius = radius;
-            currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
-            dragHotspot.setPerspective({
-              extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
-              radius: radius,
-            });
-          }
-          console.log(currentCoords);
-        });
+        // var radius = hotspot.perspective.radius,
+        //   x = 0,
+        //   y = 0,
+        //   z = 0;
+        // document.addEventListener('keypress', function(event) {
+        //   var dragHotspot = hotspotElement;
+        //   if (event.key === 'd') {
+        //     currentCoords.yaw = currentCoords.yaw + 0.001;
+        //     dragHotspot.setPosition(currentCoords);
+        //   }
+        //   if (event.key === 'a') {
+        //     currentCoords.yaw = currentCoords.yaw - 0.001;
+        //     dragHotspot.setPosition(currentCoords);
+        //   }
+        //   if (event.key === 's') {
+        //     currentCoords.pitch = currentCoords.pitch + 0.001;
+        //     dragHotspot.setPosition(currentCoords);
+        //   }
+        //   if (event.key === 'w') {
+        //     currentCoords.pitch = currentCoords.pitch - 0.001;
+        //     dragHotspot.setPosition(currentCoords);
+        //   }
+        //   if (event.key === '+') {
+        //     radius += 30;
+        //     currentCoords.perspective.radius = radius;
+        //     dragHotspot.setPerspective({ radius: radius });
+        //   }
+        //   if (event.key === '-') {
+        //     radius -= 30;
+        //     currentCoords.perspective.radius = radius;
+        //     dragHotspot.setPerspective({ radius: radius });
+        //   }
+        //   if (event.key === 'y') {
+        //     y += 1;
+        //     currentCoords.perspective.radius = radius;
+        //     currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+        //     dragHotspot.setPerspective({
+        //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+        //       radius: radius,
+        //     });
+        //   }
+        //   if (event.key === 'h') {
+        //     y -= 1;
+        //     currentCoords.perspective.radius = radius;
+        //     currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+        //     dragHotspot.setPerspective({
+        //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+        //       radius: radius,
+        //     });
+        //   }
+        //   if (event.key === 'g') {
+        //     x += 1;
+        //     currentCoords.perspective.radius = radius;
+        //     currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+        //     dragHotspot.setPerspective({
+        //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+        //       radius: radius,
+        //     });
+        //   }
+        //   if (event.key === 'j') {
+        //     x -= 1;
+        //     currentCoords.perspective.radius = radius;
+        //     currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+        //     dragHotspot.setPerspective({
+        //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+        //       radius: radius,
+        //     });
+        //   }
+        //   if (event.key === 'b') {
+        //     z += 1;
+        //     currentCoords.perspective.radius = radius;
+        //     currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+        //     dragHotspot.setPerspective({
+        //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+        //       radius: radius,
+        //     });
+        //   }
+        //   if (event.key === 'n') {
+        //     z -= 1;
+        //     currentCoords.perspective.radius = radius;
+        //     currentCoords.extraRotations = `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`;
+        //     dragHotspot.setPerspective({
+        //       extraRotations: `rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`,
+        //       radius: radius,
+        //     });
+        //   }
+        //   console.log(currentCoords);
+        // });
       });
     }
 
@@ -672,10 +672,11 @@ var VIDEO_FORMATS = [
 
   // hide(loader)
 
-  document.body.addEventListener('click', function(e) {
-    var view = viewer.view();
-    console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }));
-  });
+  // code for developers
+  // document.body.addEventListener('click', function(e) {
+  //   var view = viewer.view();
+  //   console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }));
+  // });
 
   // Display the initial scene.
   switchScene(scenes[0]);
