@@ -367,7 +367,7 @@ var VIDEO_FORMATS = [
 
   function createEmbeddedElement() {
     var wrapper = document.createElement('div');
-    wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/TYfxKyghbMk?autoplay=1&mute=1&enablejsapi=1&playsinline=1&controls=0" frameborder="0"></iframe>'
+    wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/TYfxKyghbMk?autoplay=1&mute=1&enablejsapi=1&playsinline=1&controls=0&loop=1&&playlist=TYfxKyghbMk" frameborder="0"></iframe>'
     // Add video element
     // var video = document.createElement('video');
     // VIDEO_FORMATS.forEach(function(item) {
