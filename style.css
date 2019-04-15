@@ -645,7 +645,7 @@ a, a:hover, a:active, a:visited {
   padding: 5px 10px;
   font-family: 'BebasNeue'; 
   text-transform: uppercase;
-  color: #fff;
+  color: #fff !important;
   font-size: 1.5rem;
   text-decoration: none;
   border: 2px solid #fff;

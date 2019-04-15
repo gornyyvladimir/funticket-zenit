@@ -222,7 +222,7 @@ var VIDEO_FORMATS = [
     }
 
     // Create audio Hotspots
-    if (data.videoHotspots) {
+    if (data.audioHotspots) {
       data.audioHotspots.forEach(function(hotspot) {
         var element = createAudioElement(hotspot.id);
         scene
