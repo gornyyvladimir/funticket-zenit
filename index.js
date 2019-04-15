@@ -443,7 +443,7 @@ var VIDEO_FORMATS = [
     // Add click event handler.
     wrapper.addEventListener('click', function() {
       switchScene(findSceneById(hotspot.target));
-      ym(53275672, 'reachGoal', 'hotspot_click');
+      ym(53295286, 'reachGoal', 'hotspot_link');
     });
 
     // Prevent touch and scroll events from reaching the parent element.
@@ -629,6 +629,8 @@ var VIDEO_FORMATS = [
     vrTourButton.classList.add('is-hidden');
     shopButton.classList.remove('is-hidden');
     mapButton.classList.remove('is-hidden');
+    ym(53295286, 'reachGoal', ' vr_click');
+
     //some actions
   });
   setTimeout(function() {
@@ -639,6 +641,7 @@ var VIDEO_FORMATS = [
   mapButton.addEventListener('click', function(event) {
     event.preventDefault();
     map.classList.toggle('hide-right');
+    ym(53295286, 'reachGoal', ' map_click');
   });
 
   var mapMarkers = document.querySelectorAll('.map-marker');
