@@ -105,12 +105,16 @@ var APP_DATA = {
       "infoHotspots": [],
       "textHotspots": [],
       "embeddedHotspots": [
-        {"yaw": -2.969202040832462,"pitch":  -0.290027319380337,"perspective": {"extraRotations": "rotateX(13deg) rotateY(-15deg) rotateZ(0deg)","radius": 8730}}
+        {"yaw": -2.969202040832462,"pitch":  -0.290027319380337,"perspective": {"extraRotations": "rotateX(13deg) rotateY(-15deg) rotateZ(0deg)","radius": 8730}, "iframe": '<iframe src="https://www.youtube.com/embed/TYfxKyghbMk?autoplay=1&mute=1&enablejsapi=1&playsinline=1&controls=0&loop=1&&playlist=TYfxKyghbMk" frameborder="0"></iframe>'},
+        {"yaw": 2.212653932190161,"pitch": -0.26787737301320624,"perspective": {"extraRotations": "rotateX(0deg) rotateY(12deg) rotateZ(-1deg)","radius": 8820}, "iframe": '<iframe src="https://www.youtube.com/embed/PLKR9mP6M6E?autoplay=1&mute=1&enablejsapi=1&playsinline=1&controls=0&loop=1&&playlist=TYfxKyghbMk" frameborder="0"></iframe>'},
       ],
       "audioHotspots": [
         {"yaw":2.6128911910505224,"pitch":-0.3814233054554954,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "audio-russia"},
         {"yaw":2.8744594637720695,"pitch":-0.3852485132106054,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "audio-tatarstan"}
       ],
+      "videoHotspots": [
+        {"yaw": -0.2894459414432422, "pitch": 0.092872429908045,"perspective":{"extraRotations":"rotateX(0deg) rotateY(0deg) rotateZ(0deg)","radius":2000}, "id": "modal-video"},
+      ]
     },
     {
       "id": "1-scene",

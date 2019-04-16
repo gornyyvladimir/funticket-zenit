@@ -122,7 +122,7 @@ var VIDEO_FORMATS = [
     // Create embedded Hotspots
     if (data.embeddedHotspots) {
       data.embeddedHotspots.forEach(function(hotspot) {
-        var element = createEmbeddedElement();
+        var element = createEmbeddedElement(hotspot.iframe);
         var hotspotElement = scene
           .hotspotContainer()
           .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
@@ -365,9 +365,9 @@ var VIDEO_FORMATS = [
     return wrapper;
   }
 
-  function createEmbeddedElement() {
+  function createEmbeddedElement(iframe) {
     var wrapper = document.createElement('div');
-    wrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/TYfxKyghbMk?autoplay=1&mute=1&enablejsapi=1&playsinline=1&controls=0&loop=1&&playlist=TYfxKyghbMk" frameborder="0"></iframe>'
+    wrapper.innerHTML = iframe;
     // Add video element
     // var video = document.createElement('video');
     // VIDEO_FORMATS.forEach(function(item) {
@@ -676,10 +676,10 @@ var VIDEO_FORMATS = [
   // hide(loader)
 
   // code for developers
-  // document.body.addEventListener('click', function(e) {
-  //   var view = viewer.view();
-  //   console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }));
-  // });
+  document.body.addEventListener('click', function(e) {
+    var view = viewer.view();
+    console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }));
+  });
 
   // Display the initial scene.
   switchScene(scenes[0]);
