@@ -42,6 +42,7 @@ a, a:hover, a:active, a:visited {
   opacity: 0.9;
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
+  text-align: center;
 }
 
 .no-touch .link-hotspot:hover {
@@ -554,11 +555,16 @@ a, a:hover, a:active, a:visited {
 }
 
 .marker {
+  display: inline-block;
   width: 32px;
   height: 32px;
   background-image: url(https://raw.githubusercontent.com/gornyyvladimir/funticket-zenit/master/img/marker.png);
   animation: blink 1s steps(9, end) infinite;
   cursor: pointer;
+}
+
+.orange {
+  background-image: url(/img/marker_orange.png);
 }
 
 @keyframes blink {

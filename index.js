@@ -80,9 +80,12 @@ var VIDEO_FORMATS = [
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
     var urlPrefix = 'tiles';
-    var source = Marzipano.ImageUrlSource.fromString(urlPrefix + '/' + data.id + '/{z}/{f}/{y}/{x}.jpg', {
-      cubeMapPreviewUrl: urlPrefix + '/' + data.id + '/preview.jpg',
-    });
+    var source = Marzipano.ImageUrlSource.fromString(
+      urlPrefix + '/' + data.id + '/{z}/{f}/{y}/{x}.jpg',
+      {
+        cubeMapPreviewUrl: urlPrefix + '/' + data.id + '/preview.jpg',
+      },
+    );
     var geometry = new Marzipano.CubeGeometry(data.levels);
 
     var limiter = Marzipano.RectilinearView.limit.traditional(
@@ -90,7 +93,10 @@ var VIDEO_FORMATS = [
       (100 * Math.PI) / 180,
       (120 * Math.PI) / 180,
     );
-    var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
+    var view = new Marzipano.RectilinearView(
+      data.initialViewParameters,
+      limiter,
+    );
 
     var scene = viewer.createScene({
       source: source,
@@ -99,25 +105,41 @@ var VIDEO_FORMATS = [
       pinFirstLevel: true,
     });
 
+    var orangeHotspots = [];
+
     // Create link hotspots.
     data.linkHotspots.forEach(function(hotspot) {
-      var element = createLinkHotspotElement(hotspot);
-      scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+      var isOrange = false;
+      if (hotspot.target.includes('orange')) {
+        isOrange = true;
+      }
+      var element = createLinkHotspotElement(hotspot, isOrange);
+      scene
+        .hotspotContainer()
+        .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
     });
 
     // Create info hotspots.
     data.infoHotspots.forEach(function(hotspot) {
       var element = createInfoHotspotElement(hotspot);
-      scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+      scene
+        .hotspotContainer()
+        .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
     });
 
     // Create text hotspots.
-    data.textHotspots.forEach(function(hotspot) {
-      var element = createTextHotspotElement(hotspot.text);
-      scene
-        .hotspotContainer()
-        .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
-    });
+    if (data.textHotspots) {
+      data.textHotspots.forEach(function(hotspot) {
+        var element = createTextHotspotElement(hotspot.text);
+        scene
+          .hotspotContainer()
+          .createHotspot(
+            element,
+            { yaw: hotspot.yaw, pitch: hotspot.pitch },
+            { perspective: hotspot.perspective },
+          );
+      });
+    }
 
     // Create embedded Hotspots
     if (data.embeddedHotspots) {
@@ -125,8 +147,12 @@ var VIDEO_FORMATS = [
         var element = createEmbeddedElement(hotspot.iframe);
         var hotspotElement = scene
           .hotspotContainer()
-          .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
-          
+          .createHotspot(
+            element,
+            { yaw: hotspot.yaw, pitch: hotspot.pitch },
+            { perspective: hotspot.perspective },
+          );
+
         // code for developers
         // var currentCoords = hotspot;
 
@@ -227,7 +253,11 @@ var VIDEO_FORMATS = [
         var element = createAudioElement(hotspot.id);
         scene
           .hotspotContainer()
-          .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
+          .createHotspot(
+            element,
+            { yaw: hotspot.yaw, pitch: hotspot.pitch },
+            { perspective: hotspot.perspective },
+          );
       });
     }
 
@@ -237,7 +267,11 @@ var VIDEO_FORMATS = [
         var element = createVideoElement(hotspot.id);
         scene
           .hotspotContainer()
-          .createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch }, { perspective: hotspot.perspective });
+          .createHotspot(
+            element,
+            { yaw: hotspot.yaw, pitch: hotspot.pitch },
+            { perspective: hotspot.perspective },
+          );
       });
     }
 
@@ -294,32 +328,62 @@ var VIDEO_FORMATS = [
   var controls = viewer.controls();
   controls.registerMethod(
     'upElement',
-    new Marzipano.ElementPressControlMethod(viewUpElement, 'y', -velocity, friction),
+    new Marzipano.ElementPressControlMethod(
+      viewUpElement,
+      'y',
+      -velocity,
+      friction,
+    ),
     true,
   );
   controls.registerMethod(
     'downElement',
-    new Marzipano.ElementPressControlMethod(viewDownElement, 'y', velocity, friction),
+    new Marzipano.ElementPressControlMethod(
+      viewDownElement,
+      'y',
+      velocity,
+      friction,
+    ),
     true,
   );
   controls.registerMethod(
     'leftElement',
-    new Marzipano.ElementPressControlMethod(viewLeftElement, 'x', -velocity, friction),
+    new Marzipano.ElementPressControlMethod(
+      viewLeftElement,
+      'x',
+      -velocity,
+      friction,
+    ),
     true,
   );
   controls.registerMethod(
     'rightElement',
-    new Marzipano.ElementPressControlMethod(viewRightElement, 'x', velocity, friction),
+    new Marzipano.ElementPressControlMethod(
+      viewRightElement,
+      'x',
+      velocity,
+      friction,
+    ),
     true,
   );
   controls.registerMethod(
     'inElement',
-    new Marzipano.ElementPressControlMethod(viewInElement, 'zoom', -velocity, friction),
+    new Marzipano.ElementPressControlMethod(
+      viewInElement,
+      'zoom',
+      -velocity,
+      friction,
+    ),
     true,
   );
   controls.registerMethod(
     'outElement',
-    new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom', velocity, friction),
+    new Marzipano.ElementPressControlMethod(
+      viewOutElement,
+      'zoom',
+      velocity,
+      friction,
+    ),
     true,
   );
 
@@ -422,7 +486,7 @@ var VIDEO_FORMATS = [
     return wrapper;
   }
 
-  function createLinkHotspotElement(hotspot) {
+  function createLinkHotspotElement(hotspot, isOrange) {
     // Create wrapper element to hold icon and tooltip.
     var wrapper = document.createElement('div');
     wrapper.classList.add('hotspot');
@@ -433,8 +497,17 @@ var VIDEO_FORMATS = [
     // icon.src = 'img/link.png';
     icon.classList.add('marker');
 
+    if (isOrange) {
+      icon.classList.add('orange');
+      wrapper.classList.add('is-hidden');
+    }
+
     // Set rotation transform.
-    var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
+    var transformProperties = [
+      '-ms-transform',
+      '-webkit-transform',
+      'transform',
+    ];
     for (var i = 0; i < transformProperties.length; i++) {
       var property = transformProperties[i];
       icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)';
@@ -522,10 +595,14 @@ var VIDEO_FORMATS = [
     };
 
     // Show content when hotspot is clicked.
-    wrapper.querySelector('.info-hotspot-header').addEventListener('click', toggle);
+    wrapper
+      .querySelector('.info-hotspot-header')
+      .addEventListener('click', toggle);
 
     // Hide content when close icon is clicked.
-    modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', toggle);
+    modal
+      .querySelector('.info-hotspot-close-wrapper')
+      .addEventListener('click', toggle);
 
     // Prevent touch and scroll events from reaching the parent element.
     // This prevents the view control logic from interfering with the hotspot.
@@ -536,7 +613,14 @@ var VIDEO_FORMATS = [
 
   // Prevent touch and scroll events from reaching the parent element.
   function stopTouchAndScrollEventPropagation(element, eventList) {
-    var eventList = ['touchstart', 'touchmove', 'touchend', 'touchcancel', 'wheel', 'mousewheel'];
+    var eventList = [
+      'touchstart',
+      'touchmove',
+      'touchend',
+      'touchcancel',
+      'wheel',
+      'mousewheel',
+    ];
     for (var i = 0; i < eventList.length; i++) {
       element.addEventListener(eventList[i], function(event) {
         event.stopPropagation();
@@ -632,6 +716,10 @@ var VIDEO_FORMATS = [
     ym(53295286, 'reachGoal', ' vr_click');
 
     //some actions
+    var orangeHotspots = document.querySelectorAll('.link-hotspot.is-hidden');
+    orangeHotspots.forEach(function(hotspot) {
+      hotspot.classList.remove('is-hidden');
+    });
   });
   setTimeout(function() {
     vrTourButton.classList.remove('is-hidden');
