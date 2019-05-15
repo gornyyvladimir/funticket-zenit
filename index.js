@@ -769,10 +769,10 @@ var VIDEO_FORMATS = [
   // hide(loader)
 
   // code for developers
-  document.body.addEventListener('click', function(e) {
-    var view = viewer.view();
-    console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }));
-  });
+  // document.body.addEventListener('click', function(e) {
+  //   var view = viewer.view();
+  //   console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }));
+  // });
 
   // Display the initial scene.
   switchScene(scenes[0]);
