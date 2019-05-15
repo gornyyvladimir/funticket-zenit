@@ -65,7 +65,7 @@ a, a:hover, a:active, a:visited {
   left: 60%;
   top: 0; /* ( 60 - (16 + 2*8) ) / 2 */
 
-  margin-left: 3px;
+  margin-left: 15px;
 
   font-size: 16px;
 
@@ -565,6 +565,17 @@ a, a:hover, a:active, a:visited {
 
 .orange {
   background-image: url(/img/marker_orange.png);
+}
+
+.dron {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  background-image: url(/img/dron.png);
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 @keyframes blink {

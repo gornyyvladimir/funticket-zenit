@@ -502,6 +502,11 @@ var VIDEO_FORMATS = [
       wrapper.classList.add('is-hidden');
     }
 
+    if (hotspot.target.includes('dron')) {
+      icon.classList.remove('marker');
+      icon.classList.add('dron');
+    }
+
     // Set rotation transform.
     var transformProperties = [
       '-ms-transform',
